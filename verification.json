@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-11-14",
+  "appSourceVersion": "0.12.2-current-card-share / versionCode 40 / com.moadoll",
+  "static": {
+    "status": "passed",
+    "pages": 14,
+    "localReferences": 362,
+    "checks": [
+      "Page languages",
+      "Language-specific images",
+      "Existing relative files and anchors",
+      "Unique IDs and H1",
+      "JS syntax",
+      "Configuration and release states",
+      "Deployment build with a project base URL",
+      "8 original image SHA-256 matches"
+    ]
+  },
+  "browser": {
+    "status": "blocked",
+    "reasons": [
+      "Python Playwright: WinError 5 at subprocess startup",
+      "Node Playwright: Chromium spawn EPERM"
+    ],
+    "screenshotsCreated": false,
+    "preparedCommand": "python browser_check.py",
+    "ciWorkflow": ".github/workflows/browser-check.yml"
+  },
+  "deployment": {
+    "status": "not_performed",
+    "workflow": ".github/workflows/pages.yml"
+  },
+  "repositoryUpload": {
+    "status": "blocked",
+    "repository": "https://github.com/K-Ternag/moadollHome.git",
+    "reasons": [
+      "Native Git cannot reach GitHub through the execution environment proxy",
+      "Local .git configuration and index writes are denied by the environment",
+      "Connected GitHub create_file returned 403 Resource not accessible by integration"
+    ],
+    "fallbackScript": "push-home.ps1"
+  },
+  "playSubmission": {
+    "status": "pending_policy_details",
+    "missing": [
+      "policyEffectiveDate",
+      "supportRetentionDays",
+      "policiesApproved"
+    ],
+    "appFollowUp": "Add the public privacy URL or policy text inside the release app."
+  },
+  "referenceContactCheck": {
+    "local": "D:/Projects/foutFoldHome/site-config.js",
+    "public": "https://k-ternag.github.io/dayInFourHome/site-config.js",
+    "result": "Both developerName and supportEmail are empty."
+  }
+}

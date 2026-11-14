@@ -1,0 +1,58 @@
+[
+  {
+    "language": "ko",
+    "source": "D:\\Projects\\characterGame\\output\\store-marketing-v3\\website\\01-dress-up.jpg",
+    "file": "assets/ko/01-dress-up.jpg",
+    "bytes": 283466,
+    "sha256": "fe368e28de3a9f694b8db9c915070e2a12edc2e2a1a23449d9be98ee0f1bbcd3"
+  },
+  {
+    "language": "ko",
+    "source": "D:\\Projects\\characterGame\\output\\store-marketing-v3\\website\\02-hair-color.jpg",
+    "file": "assets/ko/02-hair-color.jpg",
+    "bytes": 326717,
+    "sha256": "fd49198575b08360360188cddcb503916bee1d2695921d0fd1ef2e4d9a189b1d"
+  },
+  {
+    "language": "ko",
+    "source": "D:\\Projects\\characterGame\\output\\store-marketing-v3\\website\\03-photocard.jpg",
+    "file": "assets/ko/03-photocard.jpg",
+    "bytes": 262291,
+    "sha256": "3ce10cf2d79117feee869ffa22a5b384783936bdbe1295485ecb4eb935f723a4"
+  },
+  {
+    "language": "ko",
+    "source": "D:\\Projects\\characterGame\\output\\store-marketing-v3\\website\\04-stickers-save.jpg",
+    "file": "assets/ko/04-stickers-save.jpg",
+    "bytes": 268817,
+    "sha256": "ae8c023de2c8b3a371fc976b7bebe38e2d3c7083630a59d2618010ff37abf9e1"
+  },
+  {
+    "language": "en",
+    "source": "D:\\Projects\\characterGame\\output\\website-en\\website\\01-dress-up-en.jpg",
+    "file": "assets/en/01-dress-up.jpg",
+    "bytes": 285766,
+    "sha256": "4aa558351274d38e20f4bea184abb78b411d2c88418252df548cc524e3e23e51"
+  },
+  {
+    "language": "en",
+    "source": "D:\\Projects\\characterGame\\output\\website-en\\website\\02-hair-color-en.jpg",
+    "file": "assets/en/02-hair-color.jpg",
+    "bytes": 327956,
+    "sha256": "5d98c9ce415f4b4991fd4716a6a876f92a3082e97923a3b7fa030293c6348611"
+  },
+  {
+    "language": "en",
+    "source": "D:\\Projects\\characterGame\\output\\website-en\\website\\03-photocard-en.jpg",
+    "file": "assets/en/03-photocard.jpg",
+    "bytes": 261750,
+    "sha256": "a1fa060deba6160dc680ef83de58080d25fbead0a75971f2dd9edd564cb4e5a6"
+  },
+  {
+    "language": "en",
+    "source": "D:\\Projects\\characterGame\\output\\website-en\\website\\04-stickers-save-en.jpg",
+    "file": "assets/en/04-stickers-save.jpg",
+    "bytes": 270653,
+    "sha256": "1ebc16ecc45d8ed6b43b5d239f1c1cd6e306812264ef67ad2a80f5f690f2ab8a"
+  }
+]

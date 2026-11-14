@@ -1,0 +1,2 @@
+# Only needed for browser QA. The website and generator have no third-party dependencies.
+playwright==1.58.0
