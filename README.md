@@ -119,7 +119,13 @@ powershell -ExecutionPolicy Bypass -File D:\Projects\characterGameHome\push-home
 
 Google Play 제출 전에 실제 운영 정보와 정책을 확정하고 `python verify_site.py --release`를 통과시킨 뒤, 공개 URL의 로그인 없는 접근과 출시 AAB의 SDK·권한·데이터 보안 응답을 확인하세요. 이 명령은 설정 누락을 검사하며 스토어 심사 통과를 보장하지 않습니다. 현재는 정책 시행일·문의 기록 보관 기간·정책 확정 여부가 미설정이므로 의도적으로 실패합니다.
 
-현재 광고 SDK가 없으므로 다른 앱의 광고 게시자 ID나 `app-ads.txt`를 복사하지 않았습니다. 광고를 도입할 때 실제 판매자 정보를 확인해 추가하세요.
+사용자가 제공한 광고 판매자 정보를 루트의 `app-ads.txt`에 등록했으며, `build_site.py`가 배포용 `dist/`에도 복사합니다.
+
+```text
+google.com, pub-2125537107016631, DIRECT, f08c47fec0942fa0
+```
+
+[AdMob 공식 안내](https://support.google.com/admob/answer/9363762?hl=ko)에 따라 파일은 스토어에 등록한 개발자 웹사이트의 도메인 루트에서 제공해야 합니다. 현재 프로젝트 배포 경로인 `https://k-ternag.github.io/moadollHome/app-ads.txt`에만 올리는 것으로는 충분하지 않습니다. `https://k-ternag.github.io/app-ads.txt`에서도 같은 내용을 제공하도록 도메인 루트 사이트에 게시해야 합니다. 이 파일 추가만으로 앱의 광고 SDK 연동이나 AdMob 인증이 완료되는 것은 아닙니다.
 
 확인한 공식 자료:
 

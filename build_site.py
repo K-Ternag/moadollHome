@@ -174,7 +174,7 @@ def legal(page,lang,c):
 def build(output,config):
     output.mkdir(parents=True,exist_ok=True)
     if output.resolve()!=ROOT:
-        for name in ['assets','styles.css','app.js','.nojekyll']:
+        for name in ['assets','styles.css','app.js','app-ads.txt','.nojekyll']:
             source=ROOT/name
             if source.is_dir(): shutil.copytree(source,output/name,dirs_exist_ok=True)
             else: shutil.copy2(source,output/name)
