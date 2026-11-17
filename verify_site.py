@@ -4,7 +4,7 @@ from html.parser import HTMLParser
 from urllib.parse import unquote, urlsplit
 import argparse
 import json
-from build_site import PAGES, ROOT, filename, policy_ready, validate_config
+from build_site import PAGES, ROOT, filename, missing_policy_fields, validate_config
 
 
 class Document(HTMLParser):
@@ -63,7 +63,6 @@ if __name__=='__main__':
     verify(Path(args.root))
     if args.release:
         config=validate_config(json.loads((ROOT/'site-config.json').read_text(encoding='utf-8')))
-        missing=[key for key in ['developerName','supportEmail','policyEffectiveDate','supportRetentionDays'] if not config.get(key)]
-        if not config.get('policiesApproved'): missing.append('policiesApproved')
+        missing=missing_policy_fields(config)
         if missing: raise SystemExit('NOT READY FOR PLAY SUBMISSION: '+', '.join(missing))
         print('PASS: required policy configuration is complete. Confirm published URLs and the release app before submission.')

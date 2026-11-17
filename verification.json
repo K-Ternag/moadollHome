@@ -1,26 +1,28 @@
 {
-  "checkedAt": "2026-11-14",
-  "appSourceVersion": "0.12.2-current-card-share / versionCode 40 / com.moadoll",
+  "checkedAt": "2026-11-17",
+  "appSourceVersion": "0.15.18-app-update / versionCode 62 / com.moadoll",
   "static": {
     "status": "passed",
     "pages": 14,
-    "localReferences": 362,
+    "localReferences": 378,
     "checks": [
       "Page languages",
       "Language-specific images",
       "Existing relative files and anchors",
       "Unique IDs and H1",
-      "JS syntax",
-      "Configuration and release states",
+      "Bilingual policy section parity",
+      "Generated legal pages match source and confirmed settings",
+      "Incomplete policy approval rejected",
+      "Complete policy removes draft notice and pending values",
+      "Operator-provided text escaped as plain text",
       "Deployment build with a project base URL",
-      "8 original image SHA-256 matches"
+      "No obsolete no-advertising or no-internet claims in public copy"
     ]
   },
   "browser": {
-    "status": "blocked",
+    "status": "unavailable",
     "reasons": [
-      "Python Playwright: WinError 5 at subprocess startup",
-      "Node Playwright: Chromium spawn EPERM"
+      "python browser_check.py: ModuleNotFoundError: No module named 'playwright'"
     ],
     "screenshotsCreated": false,
     "preparedCommand": "python browser_check.py",
@@ -31,6 +33,7 @@
     "workflow": ".github/workflows/pages.yml"
   },
   "repositoryUpload": {
+    "checkedAt": "2026-11-14",
     "status": "blocked",
     "repository": "https://github.com/K-Ternag/moadollHome.git",
     "reasons": [
@@ -43,11 +46,13 @@
   "playSubmission": {
     "status": "pending_policy_details",
     "missing": [
-      "policyEffectiveDate",
-      "supportRetentionDays",
+      "childrenPrivacyPolicy.ko",
+      "childrenPrivacyPolicy.en",
+      "externalProcessingDetails.ko",
+      "externalProcessingDetails.en",
       "policiesApproved"
     ],
-    "appFollowUp": "Add the public privacy URL or policy text inside the release app."
+    "appFollowUp": "Confirm child advertising and consent behavior for the all-ages audience and provider retention/international processing. App privacy-policy link already exists. Play Console declarations have not been changed or submitted."
   },
   "referenceContactCheck": {
     "local": "D:/Projects/foutFoldHome/site-config.js",

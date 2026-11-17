@@ -3,7 +3,17 @@
   "supportEmail": "greatryuhg@gmail.com",
   "playStoreUrl": "",
   "siteUrl": "https://k-ternag.github.io/moadollHome/",
-  "policyEffectiveDate": "",
-  "supportRetentionDays": null,
+  "policyEffectiveDate": "2026-11-17",
+  "supportRetentionDays": 30,
+  "supportDeletionMethod": {
+    "ko": "보관기간이 끝나거나 확인된 삭제 요청을 처리할 때 운영자가 문의 이메일과 첨부파일을 메일함 및 휴지통에서 영구 삭제하고, 문제 해결을 위해 별도로 저장한 첨부파일 사본도 삭제합니다. 메일 제공자의 시스템 기록·백업은 해당 제공자의 정책에 따릅니다.",
+    "en": "At the end of the retention period or when fulfilling a verified deletion request, the operator permanently deletes support emails and attachments from the mailbox and trash and deletes attachment copies saved separately for troubleshooting. The email provider’s system records and backups follow its own policies."
+  },
+  "targetAudience": {
+    "ko": "전체 연령(아동 포함)",
+    "en": "All ages, including children"
+  },
+  "childrenPrivacyPolicy": {"ko": "", "en": ""},
+  "externalProcessingDetails": {"ko": "", "en": ""},
   "policiesApproved": false
 }

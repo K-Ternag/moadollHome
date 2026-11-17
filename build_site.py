@@ -11,6 +11,17 @@ from site_content import COPY, FEATURES, LEGAL
 
 ROOT = Path(__file__).resolve().parent
 PAGES = ['index', 'guide', 'support', 'privacy', 'delete-account', 'terms']
+LOCALIZED_POLICY_FIELDS = ['supportDeletionMethod', 'targetAudience', 'childrenPrivacyPolicy', 'externalProcessingDetails']
+POLICY_REFERENCES = [
+    ('https://policies.google.com/privacy', 'Google 개인정보처리방침', 'Google Privacy Policy'),
+    ('https://developers.google.com/admob/android/privacy/play-data-disclosure', 'Google AdMob SDK 데이터 공개', 'Google AdMob SDK data disclosure'),
+    ('https://developers.google.com/workspace/drive/api/guides/appdata', 'Google Drive 앱 전용 데이터 설명', 'Google Drive app-specific data'),
+    ('https://support.google.com/drive/answer/6374270', 'Google Drive 숨겨진 앱 데이터 삭제 안내', 'Google Drive hidden app data deletion'),
+    ('https://support.google.com/accounts/answer/13533235', 'Google 계정 연결 관리', 'Manage Google Account connections'),
+    ('https://support.google.com/googleplay/answer/2850369', 'Google Play 구매 내역 확인', 'Review Google Play purchase history'),
+    ('https://www.weatherapi.com/privacy', 'WeatherAPI · Zoomash Ltd 개인정보처리방침', 'WeatherAPI · Zoomash Ltd Privacy Policy'),
+    ('https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement', 'GitHub 개인정보처리방침', 'GitHub Privacy Statement'),
+]
 
 
 def filename(page, lang):
@@ -49,15 +60,30 @@ def validate_config(c):
     days = c.get('supportRetentionDays')
     if days is not None and (type(days) is not int or not 1 <= days <= 3650):
         raise ValueError('supportRetentionDays must be an integer between 1 and 3650, or null')
+    for key in LOCALIZED_POLICY_FIELDS:
+        value = c.get(key)
+        if not isinstance(value, dict) or any(not isinstance(value.get(lang), str) for lang in ['ko', 'en']):
+            raise ValueError(f'{key} must contain ko and en strings')
+        c[key] = {lang: value[lang].strip() for lang in ['ko', 'en']}
     if type(c.get('policiesApproved')) is not bool:
         raise ValueError('policiesApproved must be a boolean')
     if c['policiesApproved'] and not policy_ready(c):
-        raise ValueError('Approved policies require developerName, supportEmail, policyEffectiveDate, and supportRetentionDays')
+        raise ValueError('Approved policies require completed policy settings: ' + ', '.join(missing_policy_fields(c)))
     return c
 
 
+def missing_policy_fields(c):
+    missing = [key for key in ['developerName', 'supportEmail', 'policyEffectiveDate', 'supportRetentionDays'] if not c.get(key)]
+    for key in LOCALIZED_POLICY_FIELDS:
+        value = c.get(key)
+        missing.extend(f'{key}.{lang}' for lang in ['ko', 'en'] if not isinstance(value, dict) or not value.get(lang, '').strip())
+    if not c.get('policiesApproved'):
+        missing.append('policiesApproved')
+    return missing
+
+
 def policy_ready(c):
-    return bool(c.get('policiesApproved') and all(c.get(k) for k in ['developerName', 'supportEmail', 'policyEffectiveDate', 'supportRetentionDays']))
+    return not missing_policy_fields(c)
 
 
 def mail_link(c, text=None, subject='MoaDoll'):
@@ -115,7 +141,6 @@ def layout(page, lang, content, c):
 
 def home(lang,c):
     t=COPY[lang]
-    stats=''.join(f'<div><strong>{v}</strong><span>{label}</span></div>' for v,label in t['stats'])
     ribbon=''.join(f'<span>{label}</span><i aria-hidden="true">✧</i>' for label in t['ribbon'])
     tabs=''.join(f'<a id="tab-{i}" href="#feature-{i}" class="feature-tab"><span>0{i+1}</span>{f[1]}</a>' for i,f in enumerate(FEATURES[lang]))
     panels=''.join(f'''<section id="feature-{i}" class="feature-panel" aria-labelledby="feature-title-{i}"><a href="{asset(f[0],lang)}" class="zoom-link" data-zoom data-caption="{escape(f[4],quote=True)}"><img src="{asset(f[0],lang)}" alt="{f[4]}" width="1920" height="1080" loading="lazy"><span class="zoom-hint"><span aria-hidden="true">↗</span> {t['zoom']}</span></a><div class="feature-caption"><h3 id="feature-title-{i}">{f[2]}</h3><p>{f[3]}</p></div></section>''' for i,f in enumerate(FEATURES[lang]))
@@ -123,7 +148,7 @@ def home(lang,c):
     return f'''<section class="hero wrap" id="story"><div class="hero-copy"><p class="eyebrow"><span aria-hidden="true">✳</span> A LITTLE WORLD, ALL YOURS</p><h1>{t['hero']}</h1><p class="hero-intro">{t['intro']}</p><a class="button primary" href="#gallery">{t['explore']} <span aria-hidden="true">↗</span></a><div class="hero-availability">{store(c,t)}<small>{t['android']}</small></div></div>
 <div class="hero-art"><span class="handwritten art-note" aria-hidden="true">made of little happy things</span><div class="paper-back" aria-hidden="true"></div><a class="hero-card" href="{asset('03-photocard',lang)}" data-zoom data-caption="{FEATURES[lang][2][4]}" aria-label="{t['zoom']}"><div class="hero-crop"><img src="{asset('03-photocard',lang)}" alt="{FEATURES[lang][2][4]}" width="1920" height="1080" fetchpriority="high"></div><span class="card-bottom">a little moment, forever.</span></a><span class="floating-flower" aria-hidden="true">✿</span><span class="floating-spark" aria-hidden="true">✧</span><span class="paper-label">{t['heroNote']}</span></div></section>
 <div class="ribbon"><div class="wrap">{ribbon}</div></div>
-<section class="gallery-section section-space" id="gallery"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">{t['galleryEyebrow']}</p><h2>{t['galleryTitle']}</h2></div><p>{t['galleryIntro']}</p></div><div class="feature-tabs" aria-label="{'앱 기능' if lang=='ko' else 'App features'}">{tabs}</div><div class="feature-stage">{panels}</div><p class="caption-note">{t['galleryNote']}</p><div class="stats">{stats}</div></div></section>
+<section class="gallery-section section-space" id="gallery"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">{t['galleryEyebrow']}</p><h2>{t['galleryTitle']}</h2></div><p>{t['galleryIntro']}</p></div><div class="feature-tabs" aria-label="{'앱 기능' if lang=='ko' else 'App features'}">{tabs}</div><div class="feature-stage">{panels}</div><p class="caption-note">{t['galleryNote']}</p></div></section>
 <section class="making-section section-space"><div class="wrap making-grid"><div><p class="eyebrow">FROM A DOLL TO A MEMORY</p><h2>{t['stepsTitle']}</h2><a class="text-link" href="{filename('guide',lang)}">{t['guideLink']} <span aria-hidden="true">↗</span></a><div class="little-colors" aria-hidden="true"><i></i><i></i><i></i><i></i><span>your colors, your story.</span></div></div><ol class="steps">{steps}</ol></div></section>
 <section class="privacy-strip wrap"><span class="privacy-flower" aria-hidden="true">✳</span><div><p class="eyebrow">JUST YOU & YOUR LITTLE WORLD</p><h2>{t['privacyTitle']}</h2></div><div><p>{t['privacyIntro']}</p><small>{t['privacyNote']}</small><a class="text-link" href="{filename('privacy',lang)}">{t['privacyLink']} <span aria-hidden="true">↗</span></a></div></section>
 <section class="closing section-space"><div class="wrap"><span class="closing-star" aria-hidden="true">✧</span><h2>{t['ctaTitle']}</h2><p>{t['ctaIntro']}</p>{store(c,t,True)}</div></section>'''
@@ -158,16 +183,22 @@ def legal(page,lang,c):
     identity=f'<dl class="identity"><div><dt>APP</dt><dd>MoaDoll · 모아돌 <small>com.moadoll</small></dd></div><div><dt>{t["operator"]}</dt><dd>{escape(c["developerName"] or t["pending"])}</dd></div><div><dt>{t["email"]}</dt><dd>{email}</dd></div><div><dt>{t["effective"]}</dt><dd>{escape(c["policyEffectiveDate"] or t["pending"])}</dd></div></dl>'
     if c['supportRetentionDays']:
         days=c['supportRetentionDays']
-        retention=f'문의 처리가 끝난 날부터 {days}일 보관 후 삭제합니다' if lang=='ko' else f'deleted {days} days after the request is resolved'
+        retention=f'문의 처리가 끝난 날부터 {days}일 보관 후 삭제합니다' if lang=='ko' else f'retained for {days} days after the request is resolved, then deleted'
     else:
         retention=t['pending']
     entries=LEGAL[lang][page]
     toc=''.join(f'<a href="#section-{i+1}"><span>{i+1:02d}</span>{heading}</a>' for i,(heading,_) in enumerate(entries))
-    sections=''.join(f'<section id="section-{i+1}"><h2><span>{i+1:02d}</span>{heading}</h2><p>{escape(body.replace("{retention}",retention))}</p></section>' for i,(heading,body) in enumerate(entries))
+    replacements={'retention':retention, **{key:c[key][lang] or t['pending'] for key in LOCALIZED_POLICY_FIELDS}}
+    sections=''
+    for i,(heading,body) in enumerate(entries):
+        # Substitute once, then escape each paragraph so operator settings remain plain text.
+        body=re.sub(r'\{(\w+)\}',lambda match:replacements[match[1]],body)
+        paragraphs=''.join(f'<p>{escape(paragraph)}</p>' for paragraph in body.split('\n\n'))
+        sections+=f'<section id="section-{i+1}"><h2><span>{i+1:02d}</span>{heading}</h2>{paragraphs}</section>'
     related=''.join(f'<a href="{filename(p,lang)}">{t["pages"][p]} ↗</a>' for p in ['privacy','delete-account','support'] if p!=page)
     refs=''
-    if page=='privacy':
-        refs='<p class="external-policies"><a href="https://policies.google.com/privacy">Google '+('개인정보처리방침' if lang=='ko' else 'Privacy Policy')+'</a><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub '+('개인정보처리방침' if lang=='ko' else 'Privacy Statement')+'</a></p>'
+    if page in ['privacy','delete-account']:
+        refs='<p class="external-policies">'+''.join(f'<a href="{url}">{ko if lang=="ko" else en}</a>' for url,ko,en in POLICY_REFERENCES)+'</p>'
     return f'<div class="wrap page-content"><div class="page-heading"><p class="eyebrow">YOUR WORLD, YOUR CHOICE</p><h1>{t["pages"][page]}</h1><p>MoaDoll · 모아돌</p></div><div class="legal-layout"><nav class="legal-toc" aria-label="{"목차" if lang=="ko" else "On this page"}">{toc}</nav><article class="legal-body">{notice}{identity}{sections}{refs}<div class="related-links">{related}</div></article></div></div>'
 
 
