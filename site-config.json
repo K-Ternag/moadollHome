@@ -1,7 +1,7 @@
 {
   "developerName": "K-Terang",
   "supportEmail": "greatryuhg@gmail.com",
-  "playStoreUrl": "",
+  "playStoreUrl": "https://play.google.com/store/apps/details?id=com.moadoll",
   "siteUrl": "https://k-ternag.github.io/moadollHome/",
   "policyEffectiveDate": "2026-11-17",
   "supportRetentionDays": 30,
@@ -13,7 +13,13 @@
     "ko": "전체 연령(아동 포함)",
     "en": "All ages, including children"
   },
-  "childrenPrivacyPolicy": {"ko": "", "en": ""},
-  "externalProcessingDetails": {"ko": "", "en": ""},
-  "policiesApproved": false
+  "childrenPrivacyPolicy": {
+    "ko": "모아돌은 광고 설정을 위해 나이대만 기기에 저장하며 생년월일은 수집하지 않습니다. 나이 선택 전에는 광고 SDK를 초기화하거나 광고를 요청하지 않습니다. 만 18세 미만과 나이대를 선택하지 않은 사용자에게는 아동 보호 설정을 적용하여 개인 맞춤 광고·리마케팅과 광고 ID 전송을 차단하도록 설정합니다. 성인에게는 적용되는 동의 절차와 설정에 따라 광고를 제공합니다. 나이대는 앱 설정에서 변경할 수 있습니다.",
+    "en": "MoaDoll stores only an age range on your device for advertising settings and does not collect your date of birth. Before you make an age selection, the app does not initialize the advertising SDK or request ads. For users under 18 and users who do not specify an age range, the app applies child-protection settings configured to block personalized advertising, remarketing, and transmission of the advertising ID. Adults receive ads according to the applicable consent procedures and settings. You can change your age range in the app settings."
+  },
+  "externalProcessingDetails": {
+    "ko": "WeatherAPI의 API 데이터 처리·보관·삭제는 해당 서비스의 개인정보처리방침과 이용약관에 따릅니다. 공개 자료만으로 모아돌의 각 API 요청 데이터에 적용되는 구체적인 보관기간을 확인할 수 없어, 이 정책에서는 특정 기간을 제시하지 않습니다. 관련 처리 조건과 삭제 요청은 모아돌 문의 창구 또는 WeatherAPI(support@weatherapi.com)로 문의할 수 있습니다.",
+    "en": "WeatherAPI processes, retains, and deletes API data under its privacy policy and terms of service. Public information does not establish the specific retention period applicable to each MoaDoll API request, so this policy does not state a fixed period. For processing details or deletion requests, contact MoaDoll support or WeatherAPI at support@weatherapi.com."
+  },
+  "policiesApproved": true
 }

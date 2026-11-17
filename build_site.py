@@ -14,13 +14,19 @@ PAGES = ['index', 'guide', 'support', 'privacy', 'delete-account', 'terms']
 LOCALIZED_POLICY_FIELDS = ['supportDeletionMethod', 'targetAudience', 'childrenPrivacyPolicy', 'externalProcessingDetails']
 POLICY_REFERENCES = [
     ('https://policies.google.com/privacy', 'Google 개인정보처리방침', 'Google Privacy Policy'),
+    ('https://policies.google.com/technologies/retention', 'Google 데이터 보관·삭제', 'Google data retention and deletion'),
+    ('https://datacenters.google/locations/', 'Google 데이터 센터 위치', 'Google data center locations'),
     ('https://developers.google.com/admob/android/privacy/play-data-disclosure', 'Google AdMob SDK 데이터 공개', 'Google AdMob SDK data disclosure'),
+    ('https://developers.google.com/admob/android/targeting', 'Google AdMob 연령별 광고 설정', 'Google AdMob age treatment settings'),
+    ('https://support.google.com/admob/answer/6219315', 'Google AdMob 아동 보호 동작', 'Google AdMob child-protection behavior'),
     ('https://developers.google.com/workspace/drive/api/guides/appdata', 'Google Drive 앱 전용 데이터 설명', 'Google Drive app-specific data'),
     ('https://support.google.com/drive/answer/6374270', 'Google Drive 숨겨진 앱 데이터 삭제 안내', 'Google Drive hidden app data deletion'),
     ('https://support.google.com/accounts/answer/13533235', 'Google 계정 연결 관리', 'Manage Google Account connections'),
     ('https://support.google.com/googleplay/answer/2850369', 'Google Play 구매 내역 확인', 'Review Google Play purchase history'),
     ('https://www.weatherapi.com/privacy', 'WeatherAPI · Zoomash Ltd 개인정보처리방침', 'WeatherAPI · Zoomash Ltd Privacy Policy'),
+    ('https://www.weatherapi.com/terms', 'WeatherAPI 이용약관', 'WeatherAPI terms of service'),
     ('https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement', 'GitHub 개인정보처리방침', 'GitHub Privacy Statement'),
+    ('https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection', 'GitHub Pages 접속 데이터', 'GitHub Pages access data'),
 ]
 
 

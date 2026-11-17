@@ -5,7 +5,8 @@ GitHub Pages용 한국어·영어 정적 홈페이지입니다. `D:\Projects\fou
 - 한국어: [index.html](index.html)
 - 영어: [index.en.html](index.en.html)
 - 사이트 폴더: `D:\Projects\characterGameHome`
-- 개인정보 처리 확인 기준: `com.moadoll`, `0.15.18-app-update`, versionCode 62 (2026-11-17 소스 및 생성된 release 병합 Manifest 확인)
+- 개인정보 처리 최초 확인 기준: `com.moadoll`, `0.15.18-app-update`, versionCode 62 (2026-11-17 소스 및 생성된 release 병합 Manifest 확인)
+- 아동 광고 문구 갱신 기준: `0.15.22`, versionCode 66의 `AdAudience.kt`, `FamilyAds.kt`, `RewardedAds.kt`, `AppLanguages.kt`, `CommerceScreens.kt` 소스와 사용자 제공 문구 (2026-11-17 확인)
 - 저장소: https://github.com/K-Ternag/moadollHome
 - GitHub Pages 주소: https://k-ternag.github.io/moadollHome/ (실제 공개 여부는 저장소 Pages 설정과 배포 결과에서 확인)
 
@@ -25,7 +26,7 @@ python -m http.server 8080 --bind 127.0.0.1
 
 | 경로 | 내용 |
 | --- | --- |
-| `index.html` | 게임 소개, 4개 기능 미리보기, 이미지 확대, 이용 흐름, 출시 안내 |
+| `index.html` | 게임 소개, 4개 기능 미리보기, 이미지 확대, 이용 흐름, Google Play 다운로드 |
 | `guide.html` | 인형 꾸미기, 헤어 색상, 포토카드, PNG 저장·공유 안내 |
 | `support.html` | FAQ, 연락처 및 메일 문의 |
 | `privacy.html` | 개인정보처리방침 |
@@ -59,19 +60,23 @@ python verify_site.py
 | --- | --- |
 | `developerName` | Play 스토어에 등록할 실제 개발자/사업자명 |
 | `supportEmail` | 공개하여 실제로 수신·회신할 이메일 |
-| `playStoreUrl` | 공개된 `com.moadoll` Google Play 주소. 현재 미출시이므로 비어 있음 |
+| `playStoreUrl` | 사용자 제공 다운로드 주소: `https://play.google.com/store/apps/details?id=com.moadoll` |
 | `siteUrl` | 배포된 홈페이지의 HTTPS 주소. 끝에 `/` 포함 |
 | `policyEffectiveDate` | 실제 정책 시행일, `YYYY-MM-DD` |
 | `supportRetentionDays` | 문의 처리 완료 후 기록을 보관할 실제 일수 |
 | `supportDeletionMethod` | 문의 이메일·첨부파일 삭제 방법, `ko`/`en` 문구 |
 | `targetAudience` | 실제 이용 대상 연령, `ko`/`en` 문구 |
 | `childrenPrivacyPolicy` | 아동 대상 광고·동의 처리 방식, `ko`/`en` 문구 |
-| `externalProcessingDetails` | 제공업체의 보관·국외 처리 추가 고지, `ko`/`en` 문구 |
+| `externalProcessingDetails` | 공개 자료에 근거한 WeatherAPI 처리·보관·삭제 기준과 문의 경로, `ko`/`en` 문구 |
 | `policiesApproved` | 실제 운영과 정책 검토가 완료된 후 `true` |
 
 2026-11-17 사용자 확인에 따라 운영자 **K-Terang**, 공개 문의 이메일 **greatryuhg@gmail.com**, 정책 시행일 **2026-11-17**, 이용 대상 **전체 연령(아동 포함)**을 설정했습니다. 문의 이메일과 첨부파일은 사용자가 위임한 운영 방침에 따라 **문의 처리 완료 후 30일** 보관한 뒤 운영자가 메일함·휴지통에서 영구 삭제하고, 문제 해결을 위해 별도 저장한 첨부파일 사본도 삭제하도록 정했습니다. 확인된 삭제 요청도 같은 방법으로 처리합니다. 이는 운영자가 실행할 방침이며 홈페이지에 메일 자동 삭제 기능을 구현한 것은 아닙니다.
 
-아동 대상 광고·동의 처리 방식과 외부 제공업체의 보관·국외 처리 추가 고지는 미정입니다. 해당 두 설정의 양쪽 언어를 채우고 실제 운영·앱 설정을 확인한 뒤 `policiesApproved`를 `true`로 바꾸세요. 모든 필수 값이 갖춰지면 생성기가 상단 검토본 안내와 ‘확정 예정’ 표시를 제거합니다. 설정 누락 상태에서 `true`를 지정하면 빌드가 실패합니다. 확정된 시행일만으로 정책 최종 검토가 완료된 것은 아닙니다.
+아동 광고 문구는 사용자 제공 한국어 원문과 동등한 영어 번역으로 반영했습니다. 66번 앱 소스에서 나이대만 기기 저장, 선택 전 광고 SDK 초기화·요청 차단, 만 18세 미만 및 나이 미제공 사용자에 대한 아동 보호 설정, 성인의 동의 처리, 설정에서 나이대 변경을 확인했습니다. 개인정보처리방침의 기기 데이터·광고 정보 항목도 같은 동작으로 맞췄습니다.
+
+사용자 지시에 따라 DPA 별도 작성·서명 절차 없이 공개 자료를 기준으로 정책 문서를 정리했습니다. 13번에는 Google·GitHub의 처리 범위와 보관 기준, WeatherAPI의 공개 서버 위치 및 처리·삭제 문의 경로를 안내합니다. WeatherAPI의 개별 API 요청에 적용되는 구체적 보관기간은 공개 자료로 확인되지 않아 특정 일수를 기재하지 않았습니다. 개발자 서버에 날씨 요청 데이터를 별도 보관하지 않는다는 점과 기기 내 저장·외부 제공업체의 처리를 구분했습니다.
+
+양쪽 언어의 `externalProcessingDetails`를 채우고 `policiesApproved`를 `true`로 설정해 ‘확정 예정’과 검토본 안내를 제거했습니다. 시행일은 이번 문서 적용일인 `2026-11-17`입니다. 이 설정은 홈페이지 문구 확정을 나타내며 별도 계약 체결이나 법률 검토 완료를 뜻하지 않습니다. 공개 배포는 별도 단계이며 실제 적용 일정이 바뀌면 시행일도 맞춰 갱신합니다.
 
 `playStoreUrl`이 비어 있으면 클릭할 수 있는 가짜 다운로드 링크 대신 ‘Google Play 출시 준비 중’을 표시합니다. 연락처가 없으면 메일 접수를 가장하지 않습니다. 이메일이 설정되면 메일 앱으로 직접 보내는 링크가 만들어지며, 이 홈페이지가 서버에 문의를 접수하거나 기기 데이터를 삭제하지는 않습니다.
 
@@ -118,7 +123,7 @@ powershell -ExecutionPolicy Bypass -File D:\Projects\characterGameHome\push-home
 
 - `app/build.gradle.kts`: Google Mobile Ads `25.5.0`, UMP `4.0.0`, Play Billing `8.3.0`, Google auth `22.0.0` 사용.
 - `AndroidManifest.xml` 및 release 병합 Manifest: 인터넷·네트워크 상태·Play 결제·광고 ID·광고 서비스 권한, Android 8·9 저장소 쓰기 권한 포함. 위치·연락처·카메라·마이크 권한 없음. SDK가 병합한 기타 일반 권한은 최종 AAB에서도 확인.
-- `RewardedAds.kt`, `FullscreenAds.kt`: 배너·전면·보상형 광고, UMP 동의/개인정보 선택, 전체 이용권 보유 시 광고 요청·표시 제한. UMP 호출만으로 아동 대상 처리까지 완료되었다고 판단하지 않음.
+- `AdAudience.kt`, `FamilyAds.kt`, `RewardedAds.kt`, `AppLanguages.kt`: 나이 선택 전 SDK 초기화·광고 요청 차단. 성인 이외에는 `AgeRestrictedTreatment.CHILD`와 UMP 아동 보호 설정 적용. 나이대는 기기의 별도 SharedPreferences에만 저장하고 생년월일을 받지 않음. `CommerceScreens.kt`에서 나이대 변경 제공. 배너·전면·보상형 광고와 전체 이용권의 광고 제한 동작 유지.
 - `PlayPurchases.kt`, `CommerceStore.kt`: 상품·구매 토큰·구매 상태·서명 검증, 구매 승인 및 로컬 이용권 기록. 카드번호·은행 계좌정보 직접 수집 없음.
 - `LocalBackup.kt`, `BackupRewards.kt`: 사용자가 선택한 인형·카드·문구·보유 아이템·당일 보상 기록의 수동 백업. PNG·코인 잔액·이용권 구매정보 제외.
 - `DriveBackup.kt`, `DriveBackupController.kt`, `CommerceScreens.kt`: `drive.appdata` 권한만 요청. 사용자 Drive의 `appDataFolder`에 저장하며 접근 토큰은 메모리에서 사용. 업로드 내용을 다시 읽어 검증한 후 최신 1개를 남기도록 정리하고, 정리 실패 시 이전 파일이 남을 수 있음. 현재 백업 목록 UI는 복원·새로고침을 제공하므로 존재하지 않는 앱 내 삭제 버튼을 안내하지 않음.
@@ -127,7 +132,7 @@ powershell -ExecutionPolicy Bypass -File D:\Projects\characterGameHome\push-home
 - `ExportFiles.kt`: PNG를 갤러리에 저장하고 사용자 선택에 따라 Android 공유창 사용.
 - `CommerceScreens.kt`: 앱 내 개인정보처리방침 열기 기능 확인. 이번 작업에서는 홈페이지 소스만 변경하며 앱·APK·AAB를 수정하거나 다시 빌드하지 않음.
 
-Google Play 제출 전에 실제 운영 정보와 정책을 확정하고 `python verify_site.py --release`를 통과시킨 뒤, 공개 URL의 로그인 없는 접근과 출시 AAB의 SDK·권한·데이터 보안 응답을 확인하세요. 이 명령은 설정 누락을 검사하며 스토어 심사 통과를 보장하지 않습니다. 현재는 `childrenPrivacyPolicy`, `externalProcessingDetails`, `policiesApproved`가 미확정이므로 의도적으로 실패합니다.
+`python verify_site.py --release`는 홈페이지 정책 설정의 누락 여부를 검사합니다. 공개 배포 후에는 기존 URL의 접근과 실제 표시 내용을 확인하세요. 기존 `privacy.html`·`privacy.en.html` 주소를 유지하는 홈페이지 문서 수정이며 66번 AAB를 다시 빌드하지 않습니다. 이 검증은 스토어 심사 통과나 제공업체의 개별 계약 조건 확인을 뜻하지 않습니다.
 
 ### Play Console 데이터 보안 대조표
 
@@ -150,10 +155,11 @@ Google Play 제출 전에 실제 운영 정보와 정책을 확정하고 `python
 
 각 데이터 유형에 대해 실제 **수집·공유, 필수·선택, 목적, 임시 처리 여부**를 확정해야 합니다. Drive/날씨처럼 선택 기능인 경우에도 기기 밖 처리가 있다면 범위에 포함합니다. 로컬 캐시의 1시간·24시간을 외부 서버 보관기간이나 일시적 처리의 증거로 사용하지 않습니다. HTTPS/TLS는 확인한 Drive·WeatherAPI 요청과 AdMob 공식 설명에 근거하며, 모든 전송 암호화 응답은 최종 AAB의 SDK·외부 전송 경로까지 확인 후 확정합니다. 지원 이메일로 요청할 수 있는 문의 기록과 사용자가 직접 삭제하는 기기/외부 데이터를 구분하여 삭제 관련 질문에 답하세요.
 
-### 최종 확정에 남은 운영 항목
+### 아동 광고 확인과 외부 처리 근거
 
-- **아동 포함 전체 연령:** 사용자 의도를 전체 연령 대상으로 기록했습니다. 콘텐츠 등급 ‘전체이용가’와 Play Console 대상 연령 그룹은 별도 항목입니다. 연령별 광고 처리, 연령 미확인 사용자 처리, 맞춤 광고 제한, 동의 및 필요한 보호자 절차, SDK/AdMob 설정을 정한 뒤 실제 앱과 정책을 함께 맞춰야 합니다. 현재 확인한 코드에는 UMP 흐름은 있으나 명시적인 아동 대상 광고 설정을 확인하지 못했습니다. 이 홈페이지 변경으로 앱의 아동 광고 처리가 구현되는 것은 아닙니다. [Google Play Families 정책](https://support.google.com/googleplay/android-developer/answer/9893335?hl=ko), [AdMob 타기팅 설정](https://developers.google.com/admob/android/targeting).
-- **제공업체의 보관·국외 처리:** 적용 국가, 계약상 수신 법인·처리 국가, 항목·목적·이전 시점/방법, 보관기간 및 권리 행사 경로 중 추가로 고지할 사항을 실제 계약과 서비스 설정으로 확정해야 합니다. WeatherAPI는 Zoomash Ltd 서비스이며, API 입력 데이터 처리는 해당 계약/DPA 범위도 확인합니다. 개발자용 WeatherAPI 계정·결제 보관기간을 모아돌 사용자 날씨 데이터의 보관기간으로 옮겨 적지 마세요. [WeatherAPI 개인정보처리방침](https://www.weatherapi.com/privacy), [Google 개인정보처리방침](https://policies.google.com/privacy).
+- **아동 광고:** 66번 소스의 `CHILD` 설정은 개인 맞춤 광고·리마케팅과 AAID 전송을 차단하도록 구성됩니다. 사용자 제공 문구를 정책 9번에 반영하고 10번 광고 데이터 설명에도 연령별 차이를 명시했습니다. [AdMob 연령별 보호 동작](https://support.google.com/admob/answer/6219315), [Android 설정](https://developers.google.com/admob/android/targeting).
+- **Google·GitHub:** 공개된 인프라 위치와 개별 사용자 데이터의 실제 저장 위치를 구분했습니다. 일률적인 보관일수를 만들지 않고 각 서비스의 보관·삭제 조건을 반영했습니다. [Google 국외 처리](https://policies.google.com/privacy), [Google 보관·삭제](https://policies.google.com/technologies/retention), [Google 데이터 센터](https://datacenters.google/locations/), [GitHub 국외 처리·보관](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **WeatherAPI 공개 자료 기준:** 별도 DPA 작성 없이 홈페이지 문구를 정리하라는 사용자 지시를 반영했습니다. 공개 서버 위치와 API 처리에 적용되는 정책·약관, 문의 주소를 안내합니다. 개별 요청 데이터의 보관기간은 확인되지 않았다는 점을 양쪽 언어에 명시하며, 개발자 계정이나 대시보드 로그의 보관기간을 앱 사용자 데이터의 기간으로 사용하지 않았습니다. [WeatherAPI 개인정보처리방침](https://www.weatherapi.com/privacy), [이용약관](https://www.weatherapi.com/terms).
 - **Google API 사용자 데이터 정책:** `drive.appdata` 최소 권한과 백업·복원 목적의 사용을 유지하고, 공개 정책과 OAuth 설정도 같은 처리 내용으로 맞추세요. 미확정 준수 사항을 완료했다고 표시하지 않습니다. [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), [Drive 앱 전용 데이터](https://developers.google.com/workspace/drive/api/guides/appdata).
 
 사용자가 제공한 광고 판매자 정보를 루트의 `app-ads.txt`에 등록했으며, `build_site.py`가 배포용 `dist/`에도 복사합니다.

@@ -1,6 +1,7 @@
 {
   "checkedAt": "2026-11-17",
-  "appSourceVersion": "0.15.18-app-update / versionCode 62 / com.moadoll",
+  "appSourceVersion": "0.15.22 / versionCode 66 / com.moadoll",
+  "appSourceReviewScope": "Age-related advertising behavior and the existing privacy-policy URL were checked in version 66 source. The original broader app/merged-manifest review used version 62. No app or AAB build was performed for this website update.",
   "static": {
     "status": "passed",
     "pages": 14,
@@ -44,15 +45,43 @@
     "fallbackScript": "push-home.ps1"
   },
   "playSubmission": {
-    "status": "pending_policy_details",
-    "missing": [
-      "childrenPrivacyPolicy.ko",
-      "childrenPrivacyPolicy.en",
-      "externalProcessingDetails.ko",
-      "externalProcessingDetails.en",
-      "policiesApproved"
+    "status": "not_submitted",
+    "policyConfiguration": "passed",
+    "missing": [],
+    "appFollowUp": "Bilingual policy copy is complete under the user's instruction to proceed using public sources without separately preparing or signing a DPA. Specific WeatherAPI API-request retention periods are not verified and are not asserted in the policy. Existing privacy-policy URLs are unchanged; no AAB rebuild is required for this document update. Publish the website to make the revised copy public. Play Console declarations have not been changed or submitted."
+  },
+  "policyUpdate": {
+    "checkedAt": "2026-11-17",
+    "status": "written_from_public_sources",
+    "checks": [
+      "Both languages contain the supplied child advertising wording or its English translation",
+      "Device-data and advertising sections reflect age-range storage and child advertising restrictions",
+      "Both privacy pages retain 13 matching sections and unchanged canonical URLs",
+      "All six generated legal pages match source and configuration",
+      "All six legal pages have no draft notice, pending value or unresolved placeholder",
+      "Weather section distinguishes device storage, no separate developer-server retention, and external processing",
+      "Specific WeatherAPI API-request retention periods are expressly not asserted; support contact is provided",
+      "Public policy copy contains no DPA completion requirement",
+      "Google retention, AdMob age-treatment and WeatherAPI API terms references are present",
+      "Root and dist static validation passed: 14 pages and 378 local references",
+      "Root and dist release configuration validation passed with no missing fields",
+      "git diff --check passed"
     ],
-    "appFollowUp": "Confirm child advertising and consent behavior for the all-ages audience and provider retention/international processing. App privacy-policy link already exists. Play Console declarations have not been changed or submitted."
+    "providerSources": [
+      "https://support.google.com/admob/answer/6219315",
+      "https://developers.google.com/admob/android/targeting",
+      "https://policies.google.com/privacy",
+      "https://policies.google.com/technologies/retention",
+      "https://datacenters.google/locations/",
+      "https://www.weatherapi.com/privacy",
+      "https://www.weatherapi.com/terms",
+      "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+      "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection"
+    ],
+    "evidenceScope": "Public provider policies and app source only. No private WeatherAPI DPA was read, prepared or signed. Exact retention periods for individual MoaDoll API requests have not been verified. Completing website copy does not certify legal compliance or private contractual terms.",
+    "effectiveDate": "2026-11-17",
+    "browserCheck": "Not rerun for the text and reference-link update",
+    "deployment": "not_performed"
   },
   "referenceContactCheck": {
     "local": "D:/Projects/foutFoldHome/site-config.js",
